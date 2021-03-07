@@ -7,9 +7,11 @@ const Weather = (props) => {
 
   return (
     <div>
-      <div className={'text-center icon icon-' + props.weather.toLowerCase()}></div>
+      <div className="icon-container">
+        <div className={'icon icon-' + props.weather.toLowerCase()}></div>
+      </div>
       <h2 className="text-center">{props.weather}</h2>
-      <h3 className="text-center">{props.description}</h3>
+      <p className="text-center">{props.description}</p>
       <p>Temperature: {min}&deg;C ~ {max}&deg;C</p>
       <p>Humidity: {props.humidity}%</p>
     </div>
