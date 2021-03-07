@@ -1,8 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 
 import Alert from './components/alert';
 import Loader from './components/loader';
 import Weather from './components/weather';
+
+import config from './config/index';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,8 +50,37 @@ class App extends React.Component {
     }
 
     this.setState({
-      error: ''
+      error: '',
+      state: this.props.states.LOADING
     });
+
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.country},${this.state.city}&appid=${config.API_KEY}`)
+      .then(response => {
+        if (response.cod === '404') {
+          this.setState({
+            state: this.props.states.EMPTY,
+            error: response.message
+          });
+        } else {
+          const data = response.data;
+          console.log(data);
+          this.setState({
+            state: this.props.states.LOADED,
+            result: {
+              weather: data.weather[0].main,
+              description: data.weather[0].description,
+              min: data.main.temp_min,
+              max: data.main.temp_max,
+              humidity: data.main.humidity
+            }
+          });
+        }
+      }).catch(err => {
+        this.setState({
+          state: this.props.states.EMPTY,
+          error: null
+        });
+      });
   }
 
   render() {
@@ -63,6 +95,7 @@ class App extends React.Component {
         result = (
           <Weather
             weather={this.state.result.weather}
+            description={this.state.result.description}
             min={this.state.result.min}
             max={this.state.result.max}
             humidity={this.state.result.humidity} />
@@ -87,13 +120,13 @@ class App extends React.Component {
         {alert}
 
         <form onSubmit={this.submitFormHandler}>
-          <label>
-            City:
+          <label className="spacing">
+            <span className="spacing">City:</span>
             <input type="text" name="city" value={this.state.city} onChange={this.changeCityHandler} />
           </label>
           
-          <label>
-            Country:
+          <label className="spacing">
+            <span className="spacing">Country:</span>
             <input type="text" name="country" value={this.state.country} onChange={this.changeCountryHandler} />
           </label>
           

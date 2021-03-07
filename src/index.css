@@ -20,6 +20,10 @@ form {
   margin-bottom: 1rem;
 }
 
+.spacing {
+  margin-right: 0.5rem;
+}
+
 .alert {
   border: thin solid #cc0000;
   color: #cc0000;
