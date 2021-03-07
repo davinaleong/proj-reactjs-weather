@@ -76,6 +76,8 @@ class App extends React.Component {
           
           <button type="submit">Submit</button>
         </form>
+
+        {process.env.API_KEY}
       </main>
     );
   }
