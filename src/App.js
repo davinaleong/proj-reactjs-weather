@@ -8,6 +8,10 @@ class App extends React.Component {
           Today's Weather
           <hr/>
         </h1>
+
+        <div>
+          <div className="icon icon-sun"></div>
+        </div>
       </main>
     );
   }
