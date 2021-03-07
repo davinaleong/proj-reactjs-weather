@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import config from './../config/index';
 
 const Weather = (props) => {
@@ -14,5 +15,13 @@ const Weather = (props) => {
     </div>
   );
 }
+
+Weather.propTypes = {
+  weather: PropTypes.string,
+  description: PropTypes.string,
+  min: PropTypes.string,
+  max: PropTypes.string,
+  humidity: PropTypes.string
+};
 
 export default Weather;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Alert = (props) => {
   return (
     <div className="alert">
@@ -5,5 +7,9 @@ const Alert = (props) => {
     </div>
   );
 }
+
+Alert.propTypes = {
+  text: PropTypes.string
+};
 
 export default Alert;
