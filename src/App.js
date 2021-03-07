@@ -42,6 +42,10 @@ class App extends React.Component {
       });
       return;
     }
+
+    this.setState({
+      error: ''
+    });
   }
 
   render() {
