@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Alert from './components/alert';
+import Loader from './components/loader';
 import Weather from './components/weather';
 
 class App extends React.Component {
@@ -12,12 +13,7 @@ class App extends React.Component {
       state: this.props.states.EMPTY,
       city: '',
       country: '',
-      result: {
-        min: 298.15,
-        max: 298.15,
-        humidity: 44,
-        weather: 'rain'
-      }
+      result: null
     };
   }
 
@@ -71,6 +67,10 @@ class App extends React.Component {
             max={this.state.result.max}
             humidity={this.state.result.humidity} />
         );
+        break;
+
+      case this.props.states.LOADING:
+        result = <Loader />;
         break;
 
       default:
