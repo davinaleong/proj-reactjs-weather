@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import states from './data/states';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App states={states}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

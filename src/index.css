@@ -16,6 +16,10 @@ main {
   margin: 1rem;
 }
 
+.form {
+  margin-bottom: 1rem;
+}
+
 .icon {
   width: 67px;
   height: 82px;
