@@ -3,9 +3,12 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        App
-      </div>
+      <main>
+        <h1>
+          Today's Weather
+          <hr/>
+        </h1>
+      </main>
     );
   }
 }
