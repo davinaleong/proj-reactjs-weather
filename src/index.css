@@ -24,6 +24,10 @@ form {
   margin-right: 0.5rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .alert {
   border: thin solid #cc0000;
   color: #cc0000;

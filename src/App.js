@@ -56,14 +56,13 @@ class App extends React.Component {
 
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.country},${this.state.city}&appid=${config.API_KEY}`)
       .then(response => {
-        if (response.cod === '404') {
+        const data = response.data;
+        if (data.message) {
           this.setState({
             state: this.props.states.EMPTY,
-            error: response.message
+            error: data.message
           });
         } else {
-          const data = response.data;
-          console.log(data);
           this.setState({
             state: this.props.states.LOADED,
             result: {
@@ -75,10 +74,10 @@ class App extends React.Component {
             }
           });
         }
-      }).catch(err => {
+      }).catch(error => {
         this.setState({
           state: this.props.states.EMPTY,
-          error: null
+          error: error.response.data.message
         });
       });
   }
