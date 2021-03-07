@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Alert from './components/alert';
+import Weather from './components/weather';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,13 @@ class App extends React.Component {
       error: '',
       state: this.props.states.EMPTY,
       city: '',
-      country: ''
+      country: '',
+      result: {
+        min: 298.15,
+        max: 298.15,
+        humidity: 44,
+        weather: 'rain'
+      }
     };
   }
 
@@ -54,6 +61,22 @@ class App extends React.Component {
       alert = <Alert text={this.state.error} />
     }
 
+    let result = null;
+    switch(this.state.state) {
+      case this.props.states.LOADED:
+        result = (
+          <Weather
+            weather={this.state.result.weather}
+            min={this.state.result.min}
+            max={this.state.result.max}
+            humidity={this.state.result.humidity} />
+        );
+        break;
+
+      default:
+        result = <div></div>;
+    }
+
     return (
       <main>
         <h1>
@@ -77,7 +100,7 @@ class App extends React.Component {
           <button type="submit">Submit</button>
         </form>
 
-        {process.env.API_KEY}
+        {result}
       </main>
     );
   }
