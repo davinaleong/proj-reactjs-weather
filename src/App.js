@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      error: null,
+      error: '',
       state: this.props.states.EMPTY,
       city: '',
       country: ''
@@ -44,15 +44,12 @@ class App extends React.Component {
     }
   }
 
-  renderAlert = () => {
-    if (this.state.error) {
-      return <Alert text={this.state.error} />;
-    } else {
-      return null;
-    }
-  }
-
   render() {
+    let alert = null;
+    if (this.state.error) {
+      alert = <Alert text={this.state.error} />
+    }
+
     return (
       <main>
         <h1>
@@ -60,7 +57,7 @@ class App extends React.Component {
           <hr/>
         </h1>
 
-        {this.renderAlert}
+        {alert}
 
         <form onSubmit={this.submitFormHandler}>
           <label>
