@@ -18,22 +18,33 @@ class App extends React.Component {
     });
   }
 
+  changeCountryHandler = (event) => {
+    this.setState({
+      country: event.target.value
+    });
+  }
+
   render() {
     return (
       <main>
         <h1>
-          Today's Weather
+          {"Today's Weather"}
           <hr/>
         </h1>
 
-        <div className="form">
-          <label>City:</label>
-          <input type="text" name="city" value={this.state.city} onChange={this.changeCityHandler} />
-        </div>
-
-        <div>
-          <div className="icon icon-sun"></div>
-        </div>
+        <form>
+          <label>
+            City:
+            <input type="text" name="city" value={this.state.city} onChange={this.changeCityHandler} />
+          </label>
+          
+          <label>
+            Country:
+            <input type="text" name="country" value={this.state.country} onChange={this.changeCountryHandler} />
+          </label>
+          
+          <button type="submit">Submit</button>
+        </form>
       </main>
     );
   }
